@@ -34,6 +34,38 @@ class User(UserMixin):
 # Login page
 @app.route('/', methods =["GET", "POST"])
 def login():           
+    if request.method == "POST":
+       # getting input with name = fname in HTML form
+       name = request.form.get("Uname")
+       # getting input with name = lname in HTML form
+       password = request.form.get("Pass")
+       
+       # user validation with database
+       db = DB(app.config['USER_DB']) # LOAD
+       
+       try:
+           uname, uuid = db.read("user_uuid", ("username", name)) # READ
+           uuid, pwd = db.read("uuid_pwd", ("uuid", uuid)) # READ
+           if pwd == password:
+               useragent.username = uname
+               useragent.uuid = uuid
+               user_obj = User(uuid)
+               login_user(user_obj)
+               print(f"""
+                     PASSWORD MATCH FOUND
+                     --------------------
+                     LOGIN CRIDENTIALS: 
+                        |   USER: {uname} 
+                        |   PWD : *******
+                     """)
+               
+               return redirect("/home", code=302) 
+           else:
+               return render_template("login.html", value="Wrong password ! Try again.") 
+           
+       except Exception as e:
+           print("Error MSG: ", e)
+           
     return render_template("login.html", value="Please login to continue.")
 
 # Create new account
