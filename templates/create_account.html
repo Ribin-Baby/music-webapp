@@ -1,0 +1,28 @@
+<!DOCTYPE html>    
+<html>    
+<head>    
+    <title>Login Form</title>    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='create_account.css') }}"">    
+</head>    
+<body>    
+    <h2>Create New Account</h2><br>    
+    <div class="login">    
+    <form method="POST" action="/signup">   
+        <label><b>New User Name</b><br>    
+        </label>    
+        <input type="text" name="Uname" id="Uname" placeholder="Username">    
+        <br><br>   
+        <label><b>Email</b><br>    
+        </label>    
+        <input type="text" name="Mail" id="Mail" placeholder="Email">    
+        <br><br>     
+        <label><b>New Password</b><br>    
+        </label>    
+        <input type="Password" name="Pass" id="Pass" placeholder="Password">    
+        <br><br>    
+        <button type="submit" name="log" id="log"><b>Create Account</b></button>    
+        <br><br>    
+    </form>     
+</div>    
+</body>    
+</html>  
