@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>"WELCOME HOME"</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}"">    
+  </head>
+  <body>
+    <div class="header">
+      <form class="search" method="GET" action="">
+          <input type="text" name="query" id="query" placeholder="Search...">
+          <button type="submit" >Search</button>
+      </form>
+      <h2>HOME</h2>
+      <div>
+        <button class="home" >Refresh</button>
+        <button class="myfiles" >My Album</button>
+        <button class="logout" onclick="window.location.href='{{ url_for( 'logout') }}';">Logout</button>
+      </div>
+    </div>
+    <br>
+    
+    <p>Songs in order A-Z</p><br>
+    <div class="scrollable-list">
+        {% for filename in items %}
+        <div class="grid-item"><a href="/music/{{ filename }}"><b>{{ filename }}</b></a></div>
+        {% endfor %}
+      </div>
+    
+  </body>
+</html>

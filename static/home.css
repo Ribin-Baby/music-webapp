@@ -1,0 +1,73 @@
+/* CSS styles for header */
+.header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: #555252;
+height: 80px;
+padding: 0 20px;
+}
+
+.search {
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #ffffff;
+border: 1px solid #cccccc;
+border-radius: 5px;
+width: 350px;
+height: 30px;
+margin-right: 20px;
+}
+
+.search input[type="text"] {
+border: none;
+width: 100%;
+font-size: 16px;
+padding: 5px;
+}
+
+.search button {
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+padding: 5px 10px;
+margin-left: 10px;
+cursor: pointer;
+}
+
+.header h2{
+  text-align: center;
+  color: white;
+}
+
+.logout, .myfiles, .home {
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+padding: 5px 10px;
+cursor: pointer;
+}
+
+.logout:hover, .myfiles:hover, .home:hover {
+background-color: #3e8e41;
+}
+  
+.scrollable-list {
+    height: 500px; /* set a fixed height for the grid container */
+    overflow: auto; /* enable scrolling */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* set the grid columns to a minimum of 200px and a maximum of 1fr (fluid) */
+    grid-gap: 40px; /* set the gap between the grid items */
+  }
+
+  .grid-item {
+    height: 100px;
+    border-radius: 25px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    font-size: 15px;
+    text-align: center;
+  }

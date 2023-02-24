@@ -101,6 +101,21 @@ def signup():
     # Do something with the user's input data here
     return redirect("/", code=302)
 
+@app.route('/home', methods=['GET'])
+@login_required
+def homepage():
+    music_list = ["Tumsey Pyaar Karke",
+                            "Aashiqui Aa Gayi",
+                            "Kuch Baatien", 
+                            "Mehbooba", 
+                            "Doobey", 
+                            "Raatan Lambiyan", 
+                            "Barsaat Ki Dhun", 
+                            "Ranjhaa",
+                            "Is Qadar",
+                            "Mohabbat"]
+    return render_template("home.html", items=music_list)
+
 # Define logout route
 @app.route('/logout')
 @login_required
