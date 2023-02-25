@@ -21,8 +21,8 @@
     
     <p>Songs in order A-Z</p><br>
     <div class="scrollable-list">
-        {% for filename in items %}
-        <div class="grid-item"><a href="/music/{{ filename }}"><b>{{ filename }}</b></a></div>
+        {% for filename, artist, fileid, uuid in items %}
+        <div class="grid-item"><a href="/music/{{ fileid }}"><b>{{ filename }}</b></a></div>
         {% endfor %}
       </div>
     

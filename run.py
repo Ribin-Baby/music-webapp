@@ -108,30 +108,19 @@ def signup():
 @app.route('/home', methods=['GET'])
 @login_required
 def homepage():
-    music_list = ["Tumsey Pyaar Karke",
-                            "Aashiqui Aa Gayi",
-                            "Kuch Baatien", 
-                            "Mehbooba", 
-                            "Doobey", 
-                            "Raatan Lambiyan", 
-                            "Barsaat Ki Dhun", 
-                            "Ranjhaa",
-                            "Is Qadar",
-                            "Mohabbat"]
+    # song metadata with database
+    db = DB(app.config['MUSIC_DB']) # LOAD
+    music_list = db.read("music_db", data=None, many=True) # READ all aibums
+    useragent.myalbums = db.read("music_db", ("uuid", useragent.uuid), many=True) # READ myalbums
+    
     return render_template("home.html", items=music_list)
 
 # myspace == myalbum
 @app.route('/myspace')
 @login_required
 def myspace():
-    music_list = ["Tumsey Pyaar Karke",
-                            "Mehbooba", 
-                            "Doobey", 
-                            "Ranjhaa",
-                            "Is Qadar",
-                            "Mohabbat"]
     # song metadata with database
-    return render_template('myspace.html', items=music_list)
+    return render_template('myspace.html', items=useragent.myalbums)
 
 # music uploader - SAVE TO database
 @app.route('/upload', methods=['POST'])
@@ -169,7 +158,7 @@ def upload():
                   |     song_id: {song_id}
                   --------------
                   """)
-            
+            print(useragent.uuid)
             db.insert("music_db", (title, artist, song_id, useragent.uuid)) # SAVE
             useragent.myalbums = db.read("music_db", ("uuid", useragent.uuid), many=True) # READ
             # Do something with the uploaded file
@@ -191,6 +180,7 @@ def logout():
 @login_manager.user_loader
 def load_user(user_id):
     return User(user_id)
+
 
 # ------------- MAIN --------------------------        
 if __name__ == "__main__":
