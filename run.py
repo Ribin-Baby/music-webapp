@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 from modules import generate_uuid, DB, Webuser, convert, clean_text
 from mutagen.mp3 import MP3  
@@ -65,7 +65,6 @@ def login():
                return redirect("/home", code=302) 
            else:
                return render_template("login.html", value="Wrong password ! Try again.") 
-           
        except Exception as e:
            print("Error MSG: ", e)
     return render_template("login.html", value="Please login to continue.")
@@ -118,6 +117,25 @@ def myspace():
     # song metadata with database
     return render_template('myspace.html', items=useragent.myalbums)
 
+# create music-direct link
+@app.route('/music/<fileid>', methods=['GET'])
+@login_required
+def music(fileid):
+    # song metadata with database
+    db = DB(app.config['MUSIC_DB']) # LOAD
+    filename, artist, _, uuid = db.read("music_db", ("file_id", fileid)) # READ
+    can_delete = False
+    if uuid == useragent.uuid:
+        can_delete = True
+    return render_template('music.html', title=filename, artist=artist, filename=filename, can_delete=can_delete)
+
+# read audio from folder
+@app.route('/play/<filename>')
+@login_required
+def play_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+# creating search function
 @app.route('/search')
 @login_required
 def search():

@@ -1,0 +1,104 @@
+	/* CSS styles for header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #555252;
+    height: 80px;
+    padding: 0 20px;
+    }
+    
+    .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    width: 350px;
+    height: 30px;
+    margin-right: 20px;
+    }
+    
+    .search input[type="text"] {
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    padding: 5px;
+    }
+    
+    .search button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    }
+    
+    .logout, .myfiles, .home {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    }
+    
+    .logout:hover, .myfiles:hover, .home:hover {
+    background-color: #3e8e41;
+    }
+    
+    /* Style for the box */
+    .box {
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        background-color: #f2f2f2;
+        padding: 10px 10px;
+        margin: 10px;
+    }
+    
+    /* Style for the audio player */
+    audio {
+        margin-top: 10px;
+        width: 40%;
+    }
+    
+      .metadata {
+        margin-bottom: 10px;
+      }
+
+      .metadata span {
+        font-weight: bold;
+      }
+
+    .download-button {
+        margin: 5px;
+        padding: 5px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .delete-button {
+        margin: 5px;
+        padding: 5px;
+        background-color: #f02704;
+        color: rgb(31, 29, 29);
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .download-button:hover{
+        background-color: #3e8e41;
+    }
+
+    .delete-button:hover{
+        background-color: #a32f0c;
+    }

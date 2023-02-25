@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Audio Player</title>
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='music.css') }}"">  
+</head>
+<body>
+   <div class="header">
+      <form class="search" method="GET" action="{{ url_for('search') }}">
+        <input type="text" name="query" id="query" placeholder="Search...">
+        <button type="submit" >Search</button>  
+      </form>
+      <div>
+        <button class="home" onclick="window.location.href='{{ url_for( 'homepage') }}';">Home</button>
+        <button class="myfiles" onclick="window.location.href='{{ url_for( 'myspace') }}';">My Album</button>
+        <button class="logout" onclick="window.location.href='{{ url_for( 'logout') }}';">Logout</button>
+      </div>
+    </div>
+    <br>
+
+	<div class="box">
+		<div class="metadata">
+      <span>Song: </span> {{ title }}<br>
+      <span>Artist: </span> {{ artist }}
+    </div>
+      <audio controls>
+         <source src="/play/{{ filename }}.mp3" type="audio/mpeg">
+         Your browser does not support the audio element.
+       </audio>
+       <br>
+       <div>
+       <button class="download-button" >Download</button>
+       <button class="delete-button" >Delete</button>
+       </div>
+	</div>
+</body>
+</html>
