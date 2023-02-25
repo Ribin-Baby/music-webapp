@@ -1,6 +1,8 @@
 from uuid import uuid4
 import sqlite3 as sql
+import re
 
+# generate uuids
 def generate_uuid():
     unique_id = str(uuid4())
     return unique_id
@@ -12,6 +14,10 @@ def convert(seconds):
     mins = seconds // 60
     seconds %= 60
     return hours, mins, seconds
+
+# clean text function
+def clean_text(text):
+    return re.sub('[!?.,\'()"]', '', text.lower())
 
  # Create a specific current-user class/keeps log of user specific data
 class Webuser():

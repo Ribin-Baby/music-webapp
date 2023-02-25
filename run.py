@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
-from modules import generate_uuid, DB, Webuser, convert
+from modules import generate_uuid, DB, Webuser, convert, clean_text
 from mutagen.mp3 import MP3  
 from mutagen.easyid3 import EasyID3 
 from dotenv import load_dotenv
@@ -46,7 +46,6 @@ def login():
        
        # user validation with database
        db = DB(app.config['USER_DB']) # LOAD
-       
        try:
            uname, uuid = db.read("user_uuid", ("username", name)) # READ
            uuid, pwd = db.read("uuid_pwd", ("uuid", uuid)) # READ
@@ -69,7 +68,6 @@ def login():
            
        except Exception as e:
            print("Error MSG: ", e)
-           
     return render_template("login.html", value="Please login to continue.")
 
 # Create new account
@@ -101,7 +99,6 @@ def signup():
             """)
     else:
         print("MSG: Invalid user cridentials.")
-    
     # Do something with the user's input data here
     return redirect("/", code=302)
 
@@ -112,7 +109,6 @@ def homepage():
     db = DB(app.config['MUSIC_DB']) # LOAD
     music_list = db.read("music_db", data=None, many=True) # READ all aibums
     useragent.myalbums = db.read("music_db", ("uuid", useragent.uuid), many=True) # READ myalbums
-    
     return render_template("home.html", items=music_list)
 
 # myspace == myalbum
@@ -121,6 +117,23 @@ def homepage():
 def myspace():
     # song metadata with database
     return render_template('myspace.html', items=useragent.myalbums)
+
+@app.route('/search')
+@login_required
+def search():
+    search_results = []
+    query = request.args.get('query')
+    # perform search based on query
+    db = DB(app.config['MUSIC_DB']) # LOAD
+    filedb = db.read("music_db", data=None, many=True) # READ all aibums
+    for filename, artist, fileid, uuid in filedb:
+        _query = clean_text(query)
+        _filename = clean_text(filename)
+        _artist = clean_text(artist)
+        if _query in _filename or _query in _artist:
+            search_results += [(filename, artist, fileid, uuid)]
+    print(search_results)
+    return render_template("home.html", items=search_results)
 
 # music uploader - SAVE TO database
 @app.route('/upload', methods=['POST'])
