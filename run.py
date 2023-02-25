@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
-from modules import generate_uuid, DB, Webuser
+from modules import generate_uuid, DB, Webuser, convert
+from mutagen.mp3 import MP3  
+from mutagen.easyid3 import EasyID3 
 from dotenv import load_dotenv
-import os
+import os, time
 
 # reading .env file
 load_dotenv('.env.dev')
@@ -12,7 +14,9 @@ app = Flask(__name__, template_folder="templates", static_folder="static")
 useragent = Webuser()
 
 # loading Environment variables to run.py
+app.config['UPLOAD_FOLDER'] = os.environ['UPLOAD_FOLDER']
 app.config['USER_DB'] = os.environ['USER_DB']
+app.config['MUSIC_DB'] = os.environ['MUSIC_DB']
 app.secret_key = os.environ['SECRET_KEY']
 
 login_manager = LoginManager()
@@ -115,6 +119,64 @@ def homepage():
                             "Is Qadar",
                             "Mohabbat"]
     return render_template("home.html", items=music_list)
+
+# myspace == myalbum
+@app.route('/myspace')
+@login_required
+def myspace():
+    music_list = ["Tumsey Pyaar Karke",
+                            "Mehbooba", 
+                            "Doobey", 
+                            "Ranjhaa",
+                            "Is Qadar",
+                            "Mohabbat"]
+    # song metadata with database
+    return render_template('myspace.html', items=music_list)
+
+# music uploader - SAVE TO database
+@app.route('/upload', methods=['POST'])
+@login_required
+def upload():
+   if request.method == 'POST':
+        file = request.files['audiofile']
+        filename = file.filename
+        if file and filename.endswith(".mp3"):
+            # song metadata with database
+            db = DB(app.config['MUSIC_DB']) # LOAD
+            
+            print(filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            audio = MP3(filepath, ID3=EasyID3)
+            
+            hour, min, secs = convert(audio.info.length)
+            duration = f"{min} Minutes {round(secs)} Seconds"
+            print(audio)
+            title = filename.split(".")[0]
+            artist = "unknown"
+            song_id = round(time.time())
+            
+            if "artist" in audio.keys():
+                artist = audio['artist'][0]
+            else:
+                print("NO if entered..")
+            print(f"""
+                  AUDIO METADATA
+                  --------------
+                  |     Time   : {duration}
+                  |     Title  : {title}
+                  |     Artist : {artist}
+                  |     song_id: {song_id}
+                  --------------
+                  """)
+            
+            db.insert("music_db", (title, artist, song_id, useragent.uuid)) # SAVE
+            useragent.myalbums = db.read("music_db", ("uuid", useragent.uuid), many=True) # READ
+            # Do something with the uploaded file
+            return redirect("/myspace", code=302)
+        else:
+            # Do something with the uploaded file
+            return 'Some error occured ! only supports mp3 file.'
 
 # Define logout route
 @app.route('/logout')

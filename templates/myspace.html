@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Upload Audio</title>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='myspace.css') }}"">  
+   </head>
+   <body>
+      <div class="header">
+         <form class="search" method="GET" action="">
+               <input type="text" name="query" id="query" placeholder="Search...">
+               <button type="submit" >Search</button> 
+         </form>
+         <h2>My Albums</h2>
+         <div>
+           <button class="myfiles" onclick="window.location.href='{{ url_for( 'homepage') }}';">Home</button>
+           <button class="logout" onclick="window.location.href='{{ url_for( 'logout') }}';">Logout</button>
+         </div>
+      </div>
+
+      <div class="uploader">
+      <h1>Upload Audio</h1>
+      <form class="uploadform" action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+         <input type="file" name="audiofile">
+         <p>Drag your files here or click in this area.</p>
+         <button type="submit">Upload</button>
+      </form>
+    </div>
+
+    <br>
+    <p>Songs in order A-Z</p><br>
+    <div class="scrollable-list">
+        {% for filename in items %}
+        <div class="grid-item"><a href="/music/{{ filename }}"><b>{{ filename }}</b></a></div>
+        {% endfor %}
+      </div>
+   </body>
+</html>

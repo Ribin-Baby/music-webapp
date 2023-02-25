@@ -1,0 +1,133 @@
+/* CSS styles for header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #555252;
+  height: 80px;
+  padding: 0 20px;
+  }
+  
+  .header h2{
+    text-align: center;
+    color: white;
+  }
+  
+  .search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  width: 30%;
+  height: 30px;
+  margin-right: 20px;
+  }
+  
+  .search input[type="text"] {
+  border: none;
+  width: 100%;
+  font-size: 16px;
+  padding: 5px;
+  }
+  
+  .search button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  }
+  
+  .logout, .myfiles {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  }
+  
+  .logout:hover, .myfiles:hover {
+  background-color: #3e8e41;
+  }
+
+.uploader{
+    position: inherit;
+    background-color: #1f1b1b;
+    height: 300px;
+    padding: 0 20px;
+}
+div h1{
+    color: #998e8e;
+    padding: 2px 20px;
+    text-align: center;
+  }
+  .uploadform{
+    position: absolute;
+    /* top: 25%; */
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -250px;
+    width: 500px;
+    height: 130px;
+    border: 4px dashed #fff;
+  }
+  .uploadform p{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 100px;
+    color: #ffffff;
+    font-family: Arial;
+  }
+  .uploadform input{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+  }
+  .uploadform button{
+    margin: 0;
+    color: #fff;
+    background: #16a085;
+    border: none;
+    width: 508px;
+    height: 35px;
+    margin-top: -20px;
+    margin-left: -4px;
+    border-radius: 4px;
+    border-bottom: 4px solid #117A60;
+    transition: all .2s ease;
+    outline: none;
+  }
+  .uploadform button:hover{
+    background: #149174;
+      color: #0C5645;
+  }
+  .uploadform button:active{
+    border:0;
+  }
+
+  .scrollable-list {
+    height: 500px; /* set a fixed height for the grid container */
+    overflow: auto; /* enable scrolling */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* set the grid columns to a minimum of 200px and a maximum of 1fr (fluid) */
+    grid-gap: 40px; /* set the gap between the grid items */
+  }
+
+  .grid-item {
+    height: 100px;
+    border-radius: 25px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    font-size: 15px;
+    text-align: center;
+  }

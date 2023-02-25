@@ -5,6 +5,14 @@ def generate_uuid():
     unique_id = str(uuid4())
     return unique_id
 
+# function to convert the seconds into readable format
+def convert(seconds):
+    hours = seconds // 3600
+    seconds %= 3600
+    mins = seconds // 60
+    seconds %= 60
+    return hours, mins, seconds
+
  # Create a specific current-user class/keeps log of user specific data
 class Webuser():
     def __init__(self):

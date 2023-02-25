@@ -12,8 +12,8 @@
       </form>
       <h2>HOME</h2>
       <div>
-        <button class="home" >Refresh</button>
-        <button class="myfiles" >My Album</button>
+        <button class="home" onclick="window.location.href='{{ url_for( 'homepage') }}';">Refresh</button>
+        <button class="myfiles" onclick="window.location.href='{{ url_for( 'myspace') }}';">My Album</button>
         <button class="logout" onclick="window.location.href='{{ url_for( 'logout') }}';">Logout</button>
       </div>
     </div>
