@@ -29,8 +29,8 @@
        </audio>
        <br>
        <div>
-       <button class="download-button" >Download</button>
-       <button class="delete-button" >Delete</button>
+       <button class="download-button" onclick="window.location.href='{{ url_for('download_audio', filename=filename + '.mp3' )}}';">Download</button>
+       <button class="delete-button" onclick="window.location.href='{{ url_for('delete_audio', filename=filename )}}';" {% if can_delete %} {% else %} style="display:none;" {% endif %}>Delete</button>
        </div>
 	</div>
 </body>

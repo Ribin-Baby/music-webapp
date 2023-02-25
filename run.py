@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory, send_file
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 from modules import generate_uuid, DB, Webuser, convert, clean_text
 from mutagen.mp3 import MP3  
@@ -134,6 +134,32 @@ def music(fileid):
 @login_required
 def play_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+# download audio file from web
+@app.route('/download/<filename>')
+@login_required
+def download_audio(filename):
+    audio_path = app.config['UPLOAD_FOLDER'] + filename
+    return send_file(audio_path, as_attachment=True, attachment_filename=filename)
+
+# download audio file from web
+@app.route('/delete/<filename>')
+@login_required
+def delete_audio(filename):
+    print("DELETE: ", filename, ".mp3")
+    
+    # deleting song metadata from derver database
+    db = DB(app.config['MUSIC_DB']) # LOAD
+    db.remove("music_db", ("filename", filename))
+    useragent.myalbums = db.read("music_db", ("uuid", useragent.uuid), many=True) # READ
+    
+    # deleting song from server folder
+    file_path = app.config['UPLOAD_FOLDER'] + filename + ".mp3"
+    if os.path.exists(file_path):
+        os.remove(file_path)
+    else:
+        print("The file does not exist")
+    return redirect("/myspace", code=302)
 
 # creating search function
 @app.route('/search')
