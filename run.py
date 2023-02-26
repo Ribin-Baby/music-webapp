@@ -59,7 +59,7 @@ def login():
                      --------------------
                      LOGIN CRIDENTIALS: 
                         |   USER: {uname} 
-                        |   PWD : *******
+                        |   PWD : {pwd[0]}***{pwd[-1]}
                      """)
                
                return redirect("/home", code=302) 
