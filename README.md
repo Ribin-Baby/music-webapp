@@ -21,6 +21,14 @@ pip install -r requirements.txt
 ```sh
 python3 run.py
 ```
+4. open browser and type this URL
+```html
+ http://localhost:8080/
+ ```
+## DEMO VIDEO 
+---
+[![Final DEMO video](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/11.png)](https://www.youtube.com/watch?v=x1Jx9ohHuhw)
+
 ## Features
 
 - Added login and logout functionalities.
@@ -31,3 +39,26 @@ python3 run.py
 - a user can play and download any songs uploaded by any user from this platform.
 - and the user can delete his uploadings.
 
+1. ### login page
+[![login page](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/2.png)]()
+
+2. ### create account page
+From here users can create new account, so they can login to this platform and use it.
+[![login page](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/3.png)]()
+
+3. ### Home Page
+This is the home page , we can scroll through all the available songs in the platform and also can search and find a song with song title or artist name.
+[![login page](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/4.png)]()
+
+4. ### My Album page
+Here we can see all our uploadings to the platform. we can also upload new songs to the streaming paltform.
+[![login page](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/7.png)]()
+
+5. ### unique URL landing page for each songs.
+we can play, download, and delete songs from here.
+Deleting a song is onl possible if it is uploaded by the same user.
+[![login page](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/8.png)]()
+6. ### code directory structure
+[![login page](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/1.png)]()
+
+> ###### THE END
