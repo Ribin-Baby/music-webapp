@@ -40,26 +40,26 @@ python3 run.py
 - and the user can delete his uploadings.
 
 1. ### login page
-[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/2.png)]()
+[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/2.png)](https://github.com/Ribin-Baby/music-webapp)
 
 2. ### create account page
 From here users can create new account, so they can login to this platform and use it.
-[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/3.png)]()
+[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/3.png)](https://github.com/Ribin-Baby/music-webapp)
 
 3. ### Home Page
 This is the home page , we can scroll through all the available songs in the platform and also can search and find a song with song title or artist name.
-[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/4.png)]()
+[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/4.png)](https://github.com/Ribin-Baby/music-webapp)
 
 4. ### My Album page
 Here we can see all our uploadings to the platform. we can also upload new songs to the streaming paltform.
-[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/7.png)]()
+[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/7.png)](https://github.com/Ribin-Baby/music-webapp)
 
 5. ### unique URL landing page for each songs.
 we can play, download, and delete songs from here.
 Deleting a song is onl possible if it is uploaded by the same user.
-[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/8.png)]()
+[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/8.png)](https://github.com/Ribin-Baby/music-webapp)
 
 6. ### code directory structure
-[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/1.png)]()
+[![img](https://raw.githubusercontent.com/Ribin-Baby/music-webapp/main/junks/1.png)](https://github.com/Ribin-Baby/music-webapp)
 
 > ###### THE END
